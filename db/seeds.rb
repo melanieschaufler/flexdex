@@ -10,10 +10,10 @@ User.destroy_all
 
 puts "Creating user"
 
-melanie = {email: "melanie@web.de"}
-carla = {email: "carla@web.de"}
-louisa = {email: "louisa@web.de"}
-vincent = {email: "vincent@web.de"}
+melanie = {email: "melanie@web.de", password: "123456"}
+carla = {email: "carla@web.de", password: "123456"}
+louisa = {email: "louisa@web.de", password: "123456"}
+vincent = {email: "vincent@web.de", password: "123456"}
 
 [ melanie, vincent, carla, louisa ].each do |attributes|
   user = User.create!(attributes)
@@ -28,12 +28,12 @@ Workspace.destroy_all
 
 puts "Creating workspaces"
 
-munich_central = {address: "Hohenzollernstraße 18", description:"Cozy workspace with stable Wifi and openminded people", price: 15, seats: 20, name:"Foodora open space"}
-munich_east = {address: "Regerstraße 100", description:"Open workspace close to munich east station", price: 23, seats: 25, name:"BCG workspace"}
-frankfurt_central = {address: "Gallusstraße 20", description:"Comfortable workspace close to FFM central station", price: 7, seats: 40, name:"Deutsche Bank Finance workspace"}
+munich_central = {user: User.find_by_email("melanie@web.de"), address: "Hohenzollernstraße 18", description:"Cozy workspace with stable Wifi and openminded people", price: 15, seats: 20, name:"Foodora open space"}
+munich_east = {user: User.find_by_email("carla@web.de"), address: "Regerstraße 100", description:"Open workspace close to munich east station", price: 23, seats: 25, name:"BCG workspace"}
+frankfurt_central = {user: User.find_by_email("carla@web.de"), address: "Gallusstraße 20", description:"Comfortable workspace close to FFM central station", price: 7, seats: 40, name:"Deutsche Bank Finance workspace"}
 
 [ munich_central, munich_east, frankfurt_central ].each do |attributes|
-  workspace = Restaurant.create!(attributes)
+  workspace = Workspace.create!(attributes)
   puts "Created #{workspace.name}"
 end
 

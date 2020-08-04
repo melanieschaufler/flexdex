@@ -1,0 +1,18 @@
+<h1>Workspaces</h1>
+
+<ul>
+    <% @workspaces.each do |workspace| %>
+        <li>
+        <p>Name: <%= workspace.name %></p>
+        <p>Address: <%= workspace.address %></p>
+        <p>Description: <%= workspace.description %></p>
+        <p>Price: <%= workspace.price %></p>
+        <p>Seats: <%= workspace.seats %></p>
+        <%= link_to 'Show', workspace %>
+      </li>
+    <% end %>
+</ul>
+
+<br>
+
+<%= link_to 'Home', root_path %>

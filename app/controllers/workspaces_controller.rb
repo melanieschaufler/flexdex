@@ -1,5 +1,14 @@
 class WorkspacesController < ApplicationController
-  before_action :set_workspace, only: [:show, :edit, :update, :destroy]
+  before_action :set_workspace, only: [:edit, :update, :destroy]
+
+  def index
+    @workspaces = policy_scope(Workspace)
+  end
+
+  def show
+    @workspace = Workspace.find(params[:id])
+    authorize @workspace
+  end
 
   def new
     @workspace = Workspace.new

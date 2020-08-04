@@ -27,6 +27,14 @@ class WorkspacesController < ApplicationController
     end
   end
 
+  def edit
+  end
+
+  def update
+    @workspace.update(workspace_params)
+    redirect_to new_workspace_path
+  end
+
   def destroy
     @workspace.destroy
     redirect_to workspaces_url, notice: 'Your workspace was successfully deleted.'

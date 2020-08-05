@@ -16,7 +16,7 @@ class BookingsController < ApplicationController
     @booking.user = current_user
     authorize @booking
     if @booking.save
-      redirect_to workspaces_path(@work), notice: 'Your booking was successfully requested.'
+      redirect_to workspaces_path(@workspace), notice: 'Your booking was successfully requested.'
     else
       render :new
     end

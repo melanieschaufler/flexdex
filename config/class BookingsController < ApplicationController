@@ -1,0 +1,17 @@
+class BookingsController < ApplicationController
+
+before_action :authenticate_user!
+
+def new
+# booking form
+        # I need to find the event that we're making a booking on
+        @workspace = Workspace.find(params[:workspace_id])
+        # and because the event "has_many :bookings"
+        @booking = @workspace.bookings.new
+        # which person is booking the event?
+
+        @booking.user = current_user
+        #@booking.quantity = @booking.quantity
+        #@total_amount = @booking_quantity.to_f * @event_price.to_f
+
+    end

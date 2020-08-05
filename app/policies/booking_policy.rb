@@ -5,6 +5,10 @@ class BookingPolicy < ApplicationPolicy
     end
   end
 
+  def my_bookings?
+    return true
+  end
+
   def show?
     return true
   end

@@ -3,10 +3,20 @@ Rails.application.routes.draw do
   root to: 'pages#home'
 
   resources :workspaces do
-      resources :bookings, only: [:create, :destroy]
+    collection do
+      get :my_workspaces
+    end
   end
 
-  # resources :bookings, except: [:index, :show, :create, :edit, :destroy, :update, :new ]do
-    # get "my_bookings", on: :collection
-  # end
+  resources :workspaces do
+      resources :bookings, only: [:create]
+  end
+
+  # resources :bookings, only: [:index]
+
+  resources :bookings, only: [:destroy] do
+    collection do
+      get :my_bookings
+    end
+  end
 end

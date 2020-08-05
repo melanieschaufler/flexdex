@@ -4,10 +4,6 @@ class BookingPolicy < ApplicationPolicy
       scope.where(user: user) if user
     end
   end
-end
-      scope.all
-    end
-  end
 
   def show?
     return true

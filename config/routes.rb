@@ -11,5 +11,7 @@ Rails.application.routes.draw do
 
   resources :bookings, except: [:index, :show, :create, :edit, :destroy, :update, :new ]do
     get "my_bookings", on: :collection
+  resources :workspaces do
+      resources :bookings, only: [:create, :destroy]
   end
 end

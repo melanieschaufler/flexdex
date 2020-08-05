@@ -9,6 +9,9 @@ class BookingsController < ApplicationController
 
   def new
     @booking = Booking.new
+  before_action :set_bookings, only: [:show, :destroy]
+  def show
+    @booking = current_user.booking
     @workspace = Workspace.find(params[:workspace_id])
   end
 
@@ -24,6 +27,18 @@ class BookingsController < ApplicationController
         redirect_to bookings_path (@booking), notice: 'Your booking was successfully requested.'
         else
         render :new
+    # I need to find the event that we're making a booking on
+    @workspace = Workspace.find(params[:workspace_id])
+    # and because the event "has_many :bookings"
+    @booking = Booking.new(booking_params)
+    @booking.workspace = @workspace
+    # which person is booking the event
+    @booking.user = current_user
+    authorize @booking
+    if @booking.save
+      redirect_to workspaces_path(@work), notice: 'Your booking was successfully requested.'
+    else
+      render :new
     end
   end
 
@@ -43,4 +58,14 @@ def booking_params
   params.require(:booking).permit(:workspace_id)
 end
 
+=======
+  private
+
+  def set_bookings
+    @booking = Booking.find(params[:id])
+  end
+
+  def booking_params
+    params.require(:booking).permit(:workspace_id)
+  end
 end

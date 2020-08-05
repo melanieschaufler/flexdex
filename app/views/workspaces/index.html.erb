@@ -1,18 +1,18 @@
-<h1>Workspaces</h1>
+<h1>DISCOVER OUR </br>WORKSPACES</h1>
 
 <div class="cards-workspaces">
     <% @workspaces.each do |workspace| %>
         <div class="card">
-        <h2><%= workspace.name %></h2>
-        <p>Address </br><%= workspace.address %></p>
-        <p>Description </br><%= workspace.description %></p>
-        <p>Price </br><%= workspace.price %></p>
-        <p>Seats </br><%= workspace.seats %></p>
-        <%= link_to 'Show', workspace , class: "button-primary", id: "show-btn"%>
-      </div>
+          <%= image_tag 'workspace-01.png', class: "card-image"%>
+        <div class="card-content">
+          <h2><%= workspace.name %></h2>
+          <p>Address </br><strong><%= workspace.address %></strong></p>
+          <p>Description </br><strong><%= workspace.description %></strong></p>
+          <p id="price-wrapper"><span id="price"><%= workspace.price %>€</span> / Day</p>
+          <%= link_to 'Show', workspace , class: "button-primary", id: "show-btn"%>
+        </div>
+        </div>
     <% end %>
 </div>
 
-<br>
-
-<%= link_to 'Home', root_path %>
+<%= image_tag 'map.png', class: "map"%>

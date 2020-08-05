@@ -6,9 +6,7 @@
 <p>Seats: <%= @workspace.seats %></p>
 <p>Host: <%= @workspace.user_id %></p>
 
-<%= link_to 'Request Booking', workspaces_path %>
-
-<br>
+</br>
 
 <div class="book-workspace">
   <h4>Book this Workspace</h4>
@@ -16,9 +14,10 @@
   <%= simple_form_for [@workspace, @booking] do |f| %>
     <%= f.input :date, as: :date %>
     <h4><%= @workspace.price %> € / day</h4>
-    <%= f.submit %>
+    <%= f.submit class:"button-primary"%>
   <% end %>
   </div>
 </div>
 
-<%= link_to 'Back', workspaces_path %>
+</br>
+<%= link_to 'All Workspaces', workspaces_path %>

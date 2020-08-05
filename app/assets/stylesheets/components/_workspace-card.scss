@@ -1,24 +1,51 @@
 .card {
+    flex-basis: 40%;
     background-color: white;
-    width: 30%;
-    box-shadow: 0 0 5px rgb(230,230,230);
+    box-shadow: 0 2px 5px rgb(230,230,230);
     border-radius: 3px;
-    padding: 24px;
     margin-right: 24px;
-    height: 480px;
+    height: 500px;
+    margin-bottom: 48px;
+}
+
+.card-content {
+    padding: 24px;
+    padding-top: 0;
 
   h2{
+    margin-top: 24px;
+    margin-bottom: 24px;
     font-size: 24px;
     font-weight: 700;
+    line-height: 26px;
   }
 
   p {
     font-weight: 300;
+    font-size: 14px;
   }
 }
 
 #show-btn {
   width: 50%;
   position: absolute;
+  right: 24px;
   bottom: 24px;
+}
+
+#price {
+  font-size: 24px;
+  font-weight: 700;
+}
+
+#price-wrapper {
+  margin-bottom: 0;
+  position: absolute;
+  left: 24px;
+  bottom: 24px;
+}
+
+
+.card-image {
+  width: 100%;
 }

@@ -2,10 +2,21 @@
 
 <p>Address: <%= @workspace.address %></p>
 <p>Description: <%= @workspace.description %></p>
-<p>Price: <%= @workspace.price %></p>
+<p>Price: <%= @workspace.price %> € / day</p>
 <p>Seats: <%= @workspace.seats %></p>
 <p>Host: <%= @workspace.user_id %></p>
 
 <br>
+
+<div class="book-workspace">
+  <h4>Book this Workspace</h4>
+  <div>
+  <%= simple_form_for [@workspace, @booking] do |f| %>
+    <%= f.input :date, as: :date %>
+    <h4><%= @workspace.price %> € / day</h4>
+    <%= f.submit %>
+  <% end %>
+  </div>
+</div>
 
 <%= link_to 'Back', workspaces_path %>

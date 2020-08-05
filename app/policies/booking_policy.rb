@@ -1,6 +1,10 @@
 class BookingPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
+      scope.where(user: user) if user
+    end
+  end
+end
       scope.all
     end
   end
@@ -21,4 +25,3 @@ class BookingPolicy < ApplicationPolicy
     record.user == user
   end
 end
-

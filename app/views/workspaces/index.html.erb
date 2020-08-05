@@ -1,17 +1,17 @@
 <h1>Workspaces</h1>
 
-<ul>
+<div class="cards-workspaces">
     <% @workspaces.each do |workspace| %>
-        <li>
-        <p>Name: <%= workspace.name %></p>
-        <p>Address: <%= workspace.address %></p>
-        <p>Description: <%= workspace.description %></p>
-        <p>Price: <%= workspace.price %></p>
-        <p>Seats: <%= workspace.seats %></p>
-        <%= link_to 'Show', workspace %>
-      </li>
+        <div class="card">
+        <h2><%= workspace.name %></h2>
+        <p>Address </br><%= workspace.address %></p>
+        <p>Description </br><%= workspace.description %></p>
+        <p>Price </br><%= workspace.price %></p>
+        <p>Seats </br><%= workspace.seats %></p>
+        <%= link_to 'Show', workspace , class: "button-primary", id: "show-btn"%>
+      </div>
     <% end %>
-</ul>
+</div>
 
 <br>
 

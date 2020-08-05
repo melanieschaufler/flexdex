@@ -1,0 +1,24 @@
+.card {
+    background-color: white;
+    width: 30%;
+    box-shadow: 0 0 5px rgb(230,230,230);
+    border-radius: 3px;
+    padding: 24px;
+    margin-right: 24px;
+    height: 480px;
+
+  h2{
+    font-size: 24px;
+    font-weight: 700;
+  }
+
+  p {
+    font-weight: 300;
+  }
+}
+
+#show-btn {
+  width: 50%;
+  position: absolute;
+  bottom: 24px;
+}

@@ -1,1 +1,52 @@
 // Specific CSS for your home-page
+body {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.button-primary{
+  background-color: $dark-green;
+  color: white;
+  padding: 14px 24px 14px 24px;
+  border-radius: 4px;
+  text-align: center;
+}
+
+.button-primary:hover{
+  background-color: $light-green;
+  color: $dark-green;
+  text-decoration: none;
+}
+
+.header-wrapper {
+  margin-top: 180px;
+  z-index: 100;
+  position: relative;
+
+
+  h1{
+    font-size: 48px;
+    font-weight: 700;
+  }
+
+  p {
+    width: 40%;
+    font-weight: 300;
+    margin-top: 24px;
+    margin-bottom: 48px;
+  }
+
+  .header-image {
+    width: 40%;
+    float: right;
+    margin-top: -35%;
+  }
+}
+
+.background-vector-green {
+  width: 1060px;
+  margin-top: -40%;
+  margin-right: -20%;
+  float: right;
+  z-index: 1;
+}

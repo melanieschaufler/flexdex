@@ -2,7 +2,17 @@ class WorkspacesController < ApplicationController
   before_action :set_workspace, only: [:edit, :update, :destroy]
 
   def index
-    @workspaces = policy_scope(Workspace)
+    @workspaces = policy_scope(Workspace.geocoded)
+
+    #@flats = Flat.geocoded # returns flats with coordinates
+
+    @markers = @workspaces.map do |workspace|
+      {
+        lat: workspace.latitude,
+        lng: workspace.longitude,
+        infoWindow: render_to_string(partial: "info_window", locals: { workspace: workspace })
+      }
+    end
   end
 
   def my_workspaces

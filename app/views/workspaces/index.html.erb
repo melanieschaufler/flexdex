@@ -1,5 +1,7 @@
 <h1>DISCOVER OUR </br>WORKSPACES</h1>
 
+<p><%= @workspace %></p>
+
 <div class="cards-workspaces">
     <% @workspaces.each do |workspace| %>
         <div class="card">
@@ -19,4 +21,8 @@
     <% end %>
 </div>
 
-<%= image_tag 'map.png', class: "map"%>
+<div class="map" id="map"
+  style="height: 1400px;"
+  data-markers="<%= @markers.to_json %>"
+  data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
+</div>

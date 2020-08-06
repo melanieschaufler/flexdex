@@ -27,7 +27,7 @@ class WorkspacesController < ApplicationController
     authorize @workspace
 
     if @workspace.save
-      redirect_to @workspace, notice: 'Your new workspace was successfully created.'
+      redirect_to new_workspace_path, notice: 'Your new workspace was successfully created.'
     else
       render :new
     end
@@ -43,7 +43,7 @@ class WorkspacesController < ApplicationController
 
   def destroy
     @workspace.destroy
-    redirect_to workspaces_url, notice: 'Your workspace was successfully deleted.'
+    redirect_to new_workspace_path, notice: 'Your workspace was successfully deleted.'
   end
 
   def set_workspace

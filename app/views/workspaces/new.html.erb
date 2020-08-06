@@ -1,7 +1,7 @@
 <h1>Your workspaces</h1>
 
 <% current_user.workspaces.each do |workspace| %>
-<p><%= workspace.name %>, <%= workspace.address %>  <%= link_to 'Edit', edit_workspace_path(workspace) %>
+<p><%= workspace.name %>, <%= workspace.address %> | <%= link_to 'Edit', edit_workspace_path(workspace) %> |
 <%= link_to 'Delete', workspace_path(workspace), method: :delete, data: { confirm: 'Are you sure?' } %>
 </p>
 <% end%>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_04_091214) do
+ActiveRecord::Schema.define(version: 2020_08_06_135018) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 2020_08_04_091214) do
     t.bigint "workspace_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "status", default: "false"
     t.index ["user_id"], name: "index_bookings_on_user_id"
     t.index ["workspace_id"], name: "index_bookings_on_workspace_id"
   end

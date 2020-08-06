@@ -1,10 +1,25 @@
 <h1>Your workspaces</h1>
 
 <% current_user.workspaces.each do |workspace| %>
-<p><%= workspace.name %>, <%= workspace.address %> | <%= link_to 'Edit', edit_workspace_path(workspace) %> |
-<%= link_to 'Delete', workspace_path(workspace), method: :delete, data: { confirm: 'Are you sure?' } %>
+<p> <b> <%= workspace.name %>, <%= workspace.address %> | <%= link_to 'Edit', edit_workspace_path(workspace) %> |
+<%= link_to 'Delete', workspace_path(workspace), method: :delete, data: { confirm: 'Are you sure?' } %></b>
 </p>
+  <p> <em>Your requests for <%= workspace.name %>:</em> </p>
+    <ul> <% workspace.bookings.each do |booking| %>
+      <li> <%= booking.user.email%>
+        <%= link_to "Accept", validation_booking_path(booking) %> <%= link_to "Reject", rejection_booking_path(booking) %>
+        <% if booking.status === "accepted" %>
+            <p> Accepted </p>
+        <% elsif booking.status === "rejected" %>
+            <p>Rejected</p>
+        <% else  %>
+            <p>Pending</p>
+          <% end %>
+        <% end %>
+      </li>
+    </ul>
 <% end%>
+
 
 <h1>Create a new workspace</h1>
 

@@ -9,7 +9,11 @@
           <p>Address </br><strong><%= workspace.address %></strong></p>
           <p>Description </br><strong><%= workspace.description %></strong></p>
           <p id="price-wrapper"><span id="price"><%= workspace.price %>€</span> / Day</p>
-          <%= link_to 'Show', workspace , class: "button-primary", id: "show-btn"%>
+          <% if workspace.user_id == current_user.id %>
+            <%= link_to 'Your Workspace', workspace , class: "button-secondary", id: "my-btn"%>
+          <% else %>
+            <%= link_to 'Show', workspace , class: "button-primary", id: "show-btn"%>
+          <% end %>
         </div>
         </div>
     <% end %>

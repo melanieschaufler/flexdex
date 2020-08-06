@@ -4,9 +4,9 @@ class WorkspacesController < ApplicationController
   def index
     if params[:query].present?
       sql_query = "name ILIKE :query OR address ILIKE :query"
-      @workspaces = policy_scope(Workspace.geocoded.where(sql_query, query: "%#{params[:query]}%"))
+      @workspaces = policy_scope(Workspace.where(sql_query, query: "%#{params[:query]}%"))
     else
-      @workspaces = policy_scope(Workspace.geocoded)
+      @workspaces = policy_scope(Workspace)
     end
 
     #@flats = Flat.geocoded # returns flats with coordinates
@@ -39,6 +39,7 @@ class WorkspacesController < ApplicationController
   def create
     @workspace = Workspace.new(workspace_params)
     @workspace.user = current_user
+    Workspace.geocoded
     authorize @workspace
 
     if @workspace.save
@@ -67,6 +68,6 @@ class WorkspacesController < ApplicationController
   end
 
   def workspace_params
-    params.require(:workspace).permit(:name, :address, :description, :price, :seats)
+    params.require(:workspace).permit(:name, :address, :description, :price, :seats, :photo)
   end
 end

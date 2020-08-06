@@ -5,6 +5,11 @@ class WorkspacesController < ApplicationController
     @workspaces = policy_scope(Workspace)
   end
 
+  def my_workspaces
+    @my_workspaces = Workspace.where(user: current_user)
+    authorize @my_workspaces
+  end
+
   def show
     @workspace = Workspace.find(params[:id])
     @booking = Booking.new

@@ -5,6 +5,10 @@ class WorkspacePolicy < ApplicationPolicy
     end
   end
 
+  def my_workspaces?
+    return true
+  end
+
   def show?
     return true
   end

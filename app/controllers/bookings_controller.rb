@@ -1,10 +1,17 @@
 class BookingsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_bookings, only: [:show, :destroy]
+
+  def my_bookings
+    @my_bookings = Booking.where(user: current_user)
+    authorize @my_bookings
+  end
+
   def show
     @booking = current_user.booking
     @workspace = Workspace.find(params[:workspace_id])
   end
+
   def create
     # I need to find the event that we’re making a booking on
     @workspace = Workspace.find(params[:workspace_id])
@@ -15,16 +22,19 @@ class BookingsController < ApplicationController
     @booking.user = current_user
     authorize @booking
     if @booking.save
-      redirect_to workspaces_path(@workspace), notice: 'Your booking was successfully requested.'
+      redirect_to my_bookings_bookings_path, notice: 'Your booking was successfully requested.'
     else
       render :new
     end
   end
+
   def destroy
     @booking = Booking.find(params[:id])
+    authorize @booking
     @booking.destroy
-    redirect_to root_path, notice: 'Your booking was successfully cancelled.'
+    redirect_to my_bookings_bookings_path, notice: 'Your booking was successfully cancelled.'
   end
+
   private
   def set_bookings
     @booking = Booking.find(params[:id])
@@ -32,5 +42,6 @@ class BookingsController < ApplicationController
   def booking_params
     params.require(:booking).permit(:workspace_id)
   end
+
 end
 

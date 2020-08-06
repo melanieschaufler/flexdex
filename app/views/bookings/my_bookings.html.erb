@@ -1,1 +1,13 @@
 <h1> My bookings </h1>
+
+
+ <div class="my_bookings-tags">
+   <ul><% @my_bookings.each do |booking| %>
+      <li><%= Workspace.find(booking.workspace_id).name %> | <%= link_to "X", booking, method: :delete, data: { confirm: 'Are you sure?' }%></li>
+        <% end %>
+   </ul>
+
+  </div>
+
+  <br>
+  <%= link_to "Find other workspaces", workspaces_path%>

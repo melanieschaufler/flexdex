@@ -2,7 +2,12 @@ class WorkspacesController < ApplicationController
   before_action :set_workspace, only: [:edit, :update, :destroy]
 
   def index
-    @workspaces = policy_scope(Workspace.geocoded)
+    if params[:query].present?
+      sql_query = "name ILIKE :query OR address ILIKE :query"
+      @workspaces = policy_scope(Workspace.geocoded.where(sql_query, query: "%#{params[:query]}%"))
+    else
+      @workspaces = policy_scope(Workspace.geocoded)
+    end
 
     #@flats = Flat.geocoded # returns flats with coordinates
 

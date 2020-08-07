@@ -15,7 +15,11 @@
 <div class="cards-workspaces">
     <% @workspaces.each do |workspace| %>
         <div class="card">
+          <% if workspace.photo.present? %>
+          <%= cl_image_tag workspace.photo.key, class: "card-image" %>
+          <% else %>
           <%= image_tag 'workspace-01.png', class: "card-image"%>
+          <% end %>
         <div class="card-content">
           <h2><%= workspace.name %></h2>
           <p>Address </br><strong><%= workspace.address %></strong></p>

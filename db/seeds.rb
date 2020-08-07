@@ -20,10 +20,28 @@ puts "Finished!"
 puts "Cleaning database..."
 Workspace.destroy_all
 puts "Creating workspaces"
-munich_central = {user: User.find_by_email("melanie@web.de"), address: "Hohenzollernstraße 18", description:"Cozy workspace with stable Wifi and openminded people", price: 15, seats: 20, name:"Foodora open space"}
-munich_east = {user: User.find_by_email("carla@web.de"), address: "Regerstraße 100", description:"Open workspace close to munich east station", price: 23, seats: 25, name:"BCG workspace"}
-frankfurt_central = {user: User.find_by_email("carla@web.de"), address: "Gallusstraße 20", description:"Comfortable workspace close to FFM central station", price: 7, seats: 40, name:"Deutsche Bank Finance workspace"}
-[ munich_central, munich_east, frankfurt_central ].each do |attributes|
+munich_central = {user: User.find_by_email("melanie@web.de"), address: "Seidlstraße 5, 80335 München", description:"Cozy workspace close to the central station with great facilities, great ambience and great coffee", price: 35, seats: 20, name:"Ruby Workspace Munich"}
+hamburg_south = {user: User.find_by_email("melanie@web.de"), address: "Steinhöft 9, 20459 Hamburg", description:"Close to the Elbphilharmonie, great concept for working, meetings and trainings", price: 30, seats: 25, name:"Ruby Workspace Hamburg"}
+frankfurt_central = {user: User.find_by_email("louisa@web.de"), address: "Neue Mainzer Str. 66-68, 60311 Frankfurt am Main", description:"One of Frankfurt's top workspaces with an ingenious concept and cordial staff", price: 20, seats: 35, name:"Mindspace EuroFra"}
+
+berlin_north = {user: User.find_by_email("vincent@web.de"), address: "Brunnenstraße 64, 13355 Berlin", description:"Roomy workspace with wifi and free coffee in the north of Berlin", price: 45, seats: 25, name:"Unicorn Workspace Berlin AEG"}
+munich_east = {user: User.find_by_email("carla@web.de"), address: "Atelierstraße 29, 81671 München", description:"Here work feels even less like work ", price: 34, seats: 25, name:"WERK1"}
+düsseldorf_central = {user: User.find_by_email("louisa@web.de"), address: "Breite Str. 22, 40213 Düsseldorf", description:"The impressive workspace is located in a top location in Düsseldorf's city centre", price: 64, seats: 30, name:"CONTORA Office Solutions D"}
+
+berlin_central = {user: User.find_by_email("vincent@web.de"), address: "Markgrafenstraße 62/63, 10969 Berlin", description:"Very friendly barista, fast wifi, nice team rooms and close to Gendarmenmarkt", price: 45, seats: 20, name:"Unicorn Workspace Checkpoint Charlie"}
+hamburg_port = {user: User.find_by_email("carla@web.de"), address: "Überseeallee 1, 20457 Hamburg", description:"Great Prices, fast wifi, great coffe, free parking", price: 23, seats: 35, name:"ABC Workspaces Hafencity"}
+frankfurt_oper = {user: User.find_by_email("louisa@web.de"), address: "Taunustor 1, 60329 Frankfurt am Main", description:"Style, design and character - perfect for meetings and for working.", price: 60, seats: 40, name:"CONTORA Office Solutions F"}
+
+düsseldorf_north = {user: User.find_by_email("louisa@web.de"), address: "Oststraße 10, 40211 Düsseldorf", description:"The first cozy workspace with self-checking", price: 32, seats: 15, name:"BEEHIVE Düsseldorf"}
+berlin_south = {user: User.find_by_email("vincent@web.de"), address: "Dudenstraße 10, 10965 Berlin", description:"Very good working atmosphere, bright rooms, interesting people for nice conversations during the coffee break.", price: 27, seats: 20, name:"b+office"}
+koeln_west = {user: User.find_by_email("melanie@web.de"), address: "Venloer Str. 240, 50823 Köln", description:"Cosy little coworking space with roof terrace and great coffee", price: 35, seats: 25, name:"Ehrenspace"}
+
+munich_vitkualienmarkt = {user: User.find_by_email("carla@web.de"), address: "Rosental 6, 80331 München", description:"Cozy workspace with stable Wifi and openminded people", price: 55, seats: 20, name:"Unicorn Workspace Munich"}
+hamburg_west = {user: User.find_by_email("louisa@web.de"), address: "Große Elbstraße 68, 22767 Hamburg", description:"Open workspace close to munich east station", price: 43, seats: 10, name:"stilwerk workspace"}
+frankfurt_south = {user: User.find_by_email("carla@web.de"), address: "Mörfelder Landstraße 6-8, 60598 Frankfurt am Main", description:"Well located workspace with top equipment and interesting people", price: 20, seats: 30, name:"SleevesUp!"}
+
+
+[ munich_central, hamburg_south, frankfurt_central, berlin_north, munich_east, düsseldorf_central, berlin_central, hamburg_port, frankfurt_oper, düsseldorf_north, berlin_south, koeln_west, munich_vitkualienmarkt, hamburg_west, frankfurt_south ].each do |attributes|
   workspace = Workspace.create!(attributes)
   puts "Created #{workspace.name}"
 end

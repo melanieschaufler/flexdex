@@ -1,0 +1,47 @@
+#my-workspaces-card {
+  min-height: 600px;
+}
+
+ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+li {
+  padding-bottom: 24px;
+}
+
+#address {
+  margin-bottom: 12px;
+}
+
+#requests{
+  margin-top: 30px;
+}
+
+#request-email {
+  font-weight: 300;
+  float: left;
+  padding-bottom: 30px;
+}
+
+.request-status {
+ float: right;
+ margin-top: -2px;
+}
+
+#accepted{
+  color: $light-green;
+}
+
+#pending{
+  color: $dark-green;
+}
+
+#rejected{
+  color: #FF6075;
+}
+
+#accept-reject {
+  float: right;
+}

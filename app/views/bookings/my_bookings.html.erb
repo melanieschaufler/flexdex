@@ -2,30 +2,25 @@
 <h1> MY BOOKINGS </h1>
 <div class="cards-workspaces">
     <% @my_bookings.each do |booking| %>
-        <div class="card">
+        <div class="card" id="my-bookings-card">
           <%= image_tag 'workspace-01.png', class: "card-image"%>
           <div class="card-content">
             <h2><%= Workspace.find(booking.workspace_id).name %></h2>
             <p>Address </br><strong><%= Workspace.find(booking.workspace_id).address %></strong></p>
             <p>Description </br><strong><%= Workspace.find(booking.workspace_id).description %></strong></p>
             <p id="price-wrapper"><span id="price"><%= Workspace.find(booking.workspace_id).price %>€</span> / Day</p>
+            <p><span id="request-email"><%= booking.date %></span></p>
+            <% if booking.status === "accepted" %>
+                  <span class="request-status" id="accepted">Accepted</span>
+              <% elsif booking.status === "rejected" %>
+                  <span class="request-status" id="rejected">Rejected</span>
+              <% else  %>
+                  <span class="request-status" id="pending">Pending</span>
+            <% end %>
             <%= link_to 'Delete', booking ,method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-warning", id: "delete-btn"%>
           </div>
         </div>
     <% end %>
-   <div class="my_bookings-tags">
-   <ul><% @my_bookings.each do |booking| %>
-      <li><%= Workspace.find(booking.workspace_id).name %> | <%= link_to "X", booking, method: :delete, data: { confirm: 'Are you sure?' }%></li>
-         <% if booking.status === "accepted" %>
-            <p> Accepted </p>
-        <% elsif booking.status === "rejected" %>
-            <p>Rejected</p>
-        <% else  %>
-            <p>Pending</p>
-          <% end %>
-      <% end %>
-   </ul>
-   </div>
 </div>
 
   <br>

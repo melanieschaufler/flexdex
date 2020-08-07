@@ -58,7 +58,7 @@ class BookingsController < ApplicationController
     @booking = Booking.find(params[:id])
   end
   def booking_params
-    params.require(:booking).permit(:workspace_id)
+    params.require(:booking).permit(:workspace_id, :date)
   end
 
 end

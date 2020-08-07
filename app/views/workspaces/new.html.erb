@@ -9,10 +9,16 @@
   <p>Address </br><strong><%= workspace.address %></strong></p>
   <p>Description </br><strong><%= workspace.description %></strong></p>
   <p id="price-wrapper"><span id="price"><%= workspace.price %>€</span> / Day</p>
+  <%= link_to 'Edit', edit_workspace_path(workspace) , class: "btn button-primary", id: "edit-btn"%>
+  <%= link_to 'Delete', workspace_path(workspace) ,method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-warning", id: "delete-btn"%>
+  <br>
+  <br>
+  <br>
+  <br>
   <p> <em>Your requests for <%= workspace.name %>:</em> </p>
     <ul> <% workspace.bookings.each do |booking| %>
-      <li> <%= booking.user.email%>
-        <%= link_to "Accept", validation_booking_path(booking) %> <%= link_to "Reject", rejection_booking_path(booking) %>
+      <li> <%= booking.user.email%> | <%= booking.date %>
+        <%= link_to "Accept", validation_booking_path(booking), class: "btn button-primary" %> <%= link_to "Reject", rejection_booking_path(booking), class: "btn btn-warning" %>
         <% if booking.status === "accepted" %>
             <p> Accepted </p>
         <% elsif booking.status === "rejected" %>
@@ -23,8 +29,7 @@
         <% end %>
       </li>
     </ul>
-   <%= link_to 'Edit', edit_workspace_path(workspace) , class: "btn button-primary", id: "edit-btn"%>
-   <%= link_to 'Delete', workspace_path(workspace) ,method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-warning", id: "delete-btn"%>   
+   </div>
   </div>
   </div>
 <% end%>

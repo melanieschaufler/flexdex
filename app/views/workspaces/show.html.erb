@@ -1,24 +1,31 @@
-<h1><%= @workspace.name %></h1>
 
-<p>Address: <%= @workspace.address %></p>
-<p>Description: <%= @workspace.description %></p>
-<p>Price: <%= @workspace.price %> € / day</p>
-<p>Seats: <%= @workspace.seats %></p>
-
-</br>
+<div class="book-workspaces">
+<div class="card-show">
+  <%= image_tag 'workspace-01.png', class: "card-image-show"%>
+  <div class="card-content">
+  <h1 class="ws-name-show"><%= @workspace.name %></h1>
+  <p>Address </br><strong><%= @workspace.address %></strong></p>
+  <p>Description </br><strong><%= @workspace.description %></strong></p>
+  <p>Seats: <strong><%= @workspace.seats %></strong></p>
+  </div>
+  </div>
+</div>
 
 <div class="book-workspace">
-  <h4>Book this Workspace</h4>
+  <h4><strong>Book this Workspace</strong></h4>
   <div>
   <%= simple_form_for [@workspace, @booking] do |f| %>
-    <%= f.input :date, as: :date %>
-    <h4><%= @workspace.price %> € / day</h4>
-    <%= f.submit class:"button-primary"%>
+  <div class="text-form-book-ws">
+     <%= f.input :date, as: :date %>
+    <h4 class="price-show"><%= @workspace.price %> € / day</h4>
+  </div>
+    <%= f.submit class:"button-primary", id:"button-book-ws"%>
   <% end %>
   </div>
 </div>
 
-</br>
-<%= link_to 'All Workspaces', workspaces_path %>
+<%= link_to 'All Workspaces', workspaces_path, class:"button-secondary", id:"button-all-ws" %>
 
-
+<br>
+<br>
+<br>

@@ -1,7 +1,19 @@
-<h1> My bookings </h1>
 
-
- <div class="my_bookings-tags">
+<h1> MY BOOKINGS </h1>
+<div class="cards-workspaces">
+    <% @my_bookings.each do |booking| %>
+        <div class="card">
+          <%= image_tag 'workspace-01.png', class: "card-image"%>
+          <div class="card-content">
+            <h2><%= Workspace.find(booking.workspace_id).name %></h2>
+            <p>Address </br><strong><%= Workspace.find(booking.workspace_id).address %></strong></p>
+            <p>Description </br><strong><%= Workspace.find(booking.workspace_id).description %></strong></p>
+            <p id="price-wrapper"><span id="price"><%= Workspace.find(booking.workspace_id).price %>€</span> / Day</p>
+            <%= link_to 'Delete', booking ,method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-warning", id: "delete-btn"%>
+          </div>
+        </div>
+    <% end %>
+   <div class="my_bookings-tags">
    <ul><% @my_bookings.each do |booking| %>
       <li><%= Workspace.find(booking.workspace_id).name %> | <%= link_to "X", booking, method: :delete, data: { confirm: 'Are you sure?' }%></li>
          <% if booking.status === "accepted" %>
@@ -13,8 +25,14 @@
           <% end %>
       <% end %>
    </ul>
+   </div>
+</div>
 
+  <br>
+  <div id = "link-top">
+    <%= link_to "Find other workspaces", workspaces_path, class: "button-primary"%>
   </div>
 
   <br>
-  <%= link_to "Find other workspaces", workspaces_path%>
+  <br>
+  <br>

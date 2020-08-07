@@ -1,9 +1,14 @@
-<h1>Your workspaces</h1>
+<h1>MY <br> WORKSPACES</h1>
 
+<div class="cards-workspaces">
 <% current_user.workspaces.each do |workspace| %>
-<p> <b> <%= workspace.name %>, <%= workspace.address %> | <%= link_to 'Edit', edit_workspace_path(workspace) %> |
-<%= link_to 'Delete', workspace_path(workspace), method: :delete, data: { confirm: 'Are you sure?' } %></b>
-</p>
+<div class="card">
+  <%= image_tag 'workspace-01.png', class: "card-image"%>
+  <div class="card-content">
+  <h2><%= workspace.name %></h2>
+  <p>Address </br><strong><%= workspace.address %></strong></p>
+  <p>Description </br><strong><%= workspace.description %></strong></p>
+  <p id="price-wrapper"><span id="price"><%= workspace.price %>€</span> / Day</p>
   <p> <em>Your requests for <%= workspace.name %>:</em> </p>
     <ul> <% workspace.bookings.each do |booking| %>
       <li> <%= booking.user.email%>
@@ -18,9 +23,17 @@
         <% end %>
       </li>
     </ul>
+   <%= link_to 'Edit', edit_workspace_path(workspace) , class: "btn button-primary", id: "edit-btn"%>
+   <%= link_to 'Delete', workspace_path(workspace) ,method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-warning", id: "delete-btn"%>   
+  </div>
+  </div>
 <% end%>
+</div>
 
 
 <h1>Create a new workspace</h1>
 
+  <div class="card-create">
 <%= render 'form', workspace: @workspace %>
+  </div>
+

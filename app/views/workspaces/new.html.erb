@@ -14,7 +14,7 @@
       <% if workspace.bookings.present? %>
         <p id="requests">Requests for <%= workspace.name %>:</p>
           <ul> <% workspace.bookings.each do |booking| %>
-            <li><span id="request-email"><%= booking.user.email%></span>
+            <li><div class="email-acceptance"><span id="request-email"><%= booking.user.email%></span>
               <% if booking.status === "accepted" %>
                   <span class="request-status" id="accepted">Accepted</span>
               <% elsif booking.status === "rejected" %>
@@ -22,6 +22,7 @@
               <% else  %>
                   <span class="request-status" id="pending">Pending</span>
               <% end %>
+              </div>
               <p id="accept-reject"><%= link_to "Accept", validation_booking_path(booking)%>   <%= link_to "Reject", rejection_booking_path(booking) %></p>
               <% end %>
             </li>

@@ -1,18 +1,42 @@
 <h1>DISCOVER OUR </br>WORKSPACES</h1>
 
+<div class="search-wrapper">
+<%= form_tag workspaces_path, method: :get do %>
+  <%= text_field_tag :query,
+    params[:query],
+    class: "form-control",
+    id: "searchfield",
+    placeholder: "Find a workspace"
+  %>
+  <%= submit_tag "Search", class: "button-primary", id: "search-btn"%>
+<% end %>
+</div>
+
 <div class="cards-workspaces">
     <% @workspaces.each do |workspace| %>
         <div class="card">
+          <% if workspace.photo.present? %>
+          <%= cl_image_tag workspace.photo.key, class: "card-image" %>
+          <% else %>
           <%= image_tag 'workspace-01.png', class: "card-image"%>
+          <% end %>
         <div class="card-content">
           <h2><%= workspace.name %></h2>
           <p>Address </br><strong><%= workspace.address %></strong></p>
           <p>Description </br><strong><%= workspace.description %></strong></p>
           <p id="price-wrapper"><span id="price"><%= workspace.price %>€</span> / Day</p>
-          <%= link_to 'Show', workspace , class: "button-primary", id: "show-btn"%>
+          <% if workspace.user_id == current_user.id %>
+            <%= link_to 'Your Workspace', workspace , class: "button-secondary", id: "my-btn"%>
+          <% else %>
+            <%= link_to 'Show', workspace , class: "button-primary", id: "show-btn"%>
+          <% end %>
         </div>
         </div>
     <% end %>
 </div>
 
-<%= image_tag 'map.png', class: "map"%>
+<div class="map" id="map"
+  style="height: 1250px;"
+  data-markers="<%= @markers.to_json %>"
+  data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
+</div>

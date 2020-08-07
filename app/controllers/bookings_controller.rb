@@ -35,6 +35,24 @@ class BookingsController < ApplicationController
     redirect_to my_bookings_bookings_path, notice: 'Your booking was successfully cancelled.'
   end
 
+ def validation
+    @booking = Booking.find(params[:id])
+    authorize @booking
+    @booking.status = "accepted"
+    @booking.save
+    redirect_to new_workspace_path, notice: 'You accepted the booking'
+  end
+
+  def rejection
+    @booking = Booking.find(params[:id])
+    authorize @booking
+    @booking.status = "rejected"
+    @booking.save
+    redirect_to new_workspace_path, notice: 'You rejected the booking'
+  end
+
+
+
   private
   def set_bookings
     @booking = Booking.find(params[:id])

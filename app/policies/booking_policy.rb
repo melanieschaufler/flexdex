@@ -9,6 +9,14 @@ class BookingPolicy < ApplicationPolicy
     return true
   end
 
+  def validation?
+    return true
+  end
+
+  def rejection?
+    return true
+  end
+
   def show?
     return true
   end

@@ -12,11 +12,19 @@ Rails.application.routes.draw do
       resources :bookings, only: [:create]
   end
 
+
+
   # resources :bookings, only: [:index]
 
   resources :bookings, only: [:destroy] do
+    member do
+      get :validation
+      get :rejection
+    end
+
     collection do
       get :my_bookings
     end
   end
+
 end

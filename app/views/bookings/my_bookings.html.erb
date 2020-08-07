@@ -4,7 +4,14 @@
  <div class="my_bookings-tags">
    <ul><% @my_bookings.each do |booking| %>
       <li><%= Workspace.find(booking.workspace_id).name %> | <%= link_to "X", booking, method: :delete, data: { confirm: 'Are you sure?' }%></li>
-        <% end %>
+         <% if booking.status === "accepted" %>
+            <p> Accepted </p>
+        <% elsif booking.status === "rejected" %>
+            <p>Rejected</p>
+        <% else  %>
+            <p>Pending</p>
+          <% end %>
+      <% end %>
    </ul>
 
   </div>

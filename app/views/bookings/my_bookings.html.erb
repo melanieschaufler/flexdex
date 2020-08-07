@@ -1,9 +1,13 @@
 
 <h1> MY BOOKINGS </h1>
-<div class="cards-workspaces">
+<div class="cards-workspaces" id="my-bookings-cards">
     <% @my_bookings.each do |booking| %>
         <div class="card" id="my-bookings-card">
+          <% if Workspace.find(booking.workspace_id).photo.present? %>
+          <%= cl_image_tag Workspace.find(booking.workspace_id).photo.key, class: "card-image" %>
+          <% else %>
           <%= image_tag 'workspace-01.png', class: "card-image"%>
+          <% end %>
           <div class="card-content">
             <h2><%= Workspace.find(booking.workspace_id).name %></h2>
             <p>Address </br><strong><%= Workspace.find(booking.workspace_id).address %></strong></p>

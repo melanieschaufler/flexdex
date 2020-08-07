@@ -1,7 +1,11 @@
 
 <div class="book-workspaces">
 <div class="card-show">
-  <%= image_tag 'workspace-01.png', class: "card-image-show"%>
+    <% if @workspace.photo.present? %>
+      <%= cl_image_tag @workspace.photo.key, class: "card-image-show" %>
+      <% else %>
+        <%= image_tag 'workspace-01.png', class: "card-image-show"%>
+    <% end %>
   <div class="card-content">
   <h1 class="ws-name-show"><%= @workspace.name %></h1>
   <p>Address </br><strong><%= @workspace.address %></strong></p>

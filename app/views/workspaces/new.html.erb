@@ -1,39 +1,46 @@
-<h1>MY <br> WORKSPACES</h1>
+<h1>MY WORKSPACES</h1>
 
-<div class="cards-workspaces">
-<% current_user.workspaces.each do |workspace| %>
-<div class="card">
-  <%= image_tag 'workspace-01.png', class: "card-image"%>
-  <div class="card-content">
-  <h2><%= workspace.name %></h2>
-  <p>Address </br><strong><%= workspace.address %></strong></p>
-  <p>Description </br><strong><%= workspace.description %></strong></p>
-  <p id="price-wrapper"><span id="price"><%= workspace.price %>€</span> / Day</p>
-  <p> <em>Your requests for <%= workspace.name %>:</em> </p>
-    <ul> <% workspace.bookings.each do |booking| %>
-      <li> <%= booking.user.email%>
-        <%= link_to "Accept", validation_booking_path(booking) %> <%= link_to "Reject", rejection_booking_path(booking) %>
-        <% if booking.status === "accepted" %>
-            <p> Accepted </p>
-        <% elsif booking.status === "rejected" %>
-            <p>Rejected</p>
-        <% else  %>
-            <p>Pending</p>
+<div class="cards-workspaces" id="my-workspaces-cards">
+  <% current_user.workspaces.each do |workspace| %>
+  <div class="card" id="my-workspaces-card">
+    <% if workspace.photo.present? %>
+          <%= cl_image_tag workspace.photo.key, class: "card-image" %>
+          <% else %>
+          <%= image_tag 'workspace-01.png', class: "card-image"%>
           <% end %>
+    <div class="card-content">
+      <h2 id="address"><%= workspace.name %></h2>
+      <p>Address </br><strong><%= workspace.address %></strong></p>
+      <% if workspace.bookings.present? %>
+        <p id="requests">Requests for <%= workspace.name %>:</p>
+          <ul> <% workspace.bookings.each do |booking| %>
+            <li><div class="email-acceptance"><span id="request-email"><%= booking.user.email%></span>
+              <% if booking.status === "accepted" %>
+                  <span class="request-status" id="accepted">Accepted</span>
+              <% elsif booking.status === "rejected" %>
+                  <span class="request-status" id="rejected">Rejected</span>
+              <% else  %>
+                  <span class="request-status" id="pending">Pending</span>
+              <% end %>
+              </div>
+              <p id="accept-reject"><%= link_to "Accept", validation_booking_path(booking)%>   <%= link_to "Reject", rejection_booking_path(booking) %></p>
+              <% end %>
+            </li>
+          </ul>
+        <% else %>
+        <p id="requests">No Requests for <%= workspace.name %></p>
         <% end %>
-      </li>
-    </ul>
-   <%= link_to 'Edit', edit_workspace_path(workspace) , class: "btn button-primary", id: "edit-btn"%>
-   <%= link_to 'Delete', workspace_path(workspace) ,method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-warning", id: "delete-btn"%>   
+     <%= link_to 'Edit', edit_workspace_path(workspace) , class: "button-primary", id: "edit-btn"%>
+     <%= link_to 'Delete', workspace_path(workspace) ,method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-warning", id: "delete-btn"%>
   </div>
   </div>
 <% end%>
 </div>
 
 
-<h1>Create a new workspace</h1>
+<h2>Create a new workspace</h2>
 
-  <div class="card-create">
+<div class="card-create">
 <%= render 'form', workspace: @workspace %>
-  </div>
+</div>
 

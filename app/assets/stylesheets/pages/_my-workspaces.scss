@@ -1,0 +1,75 @@
+#my-workspaces-cards {
+  width: 100%;
+}
+
+#my-workspaces-card {
+  min-height: 600px;
+  flex-basis: 31%;
+}
+
+ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+li {
+  padding-bottom: 24px;
+}
+
+#address {
+  margin-bottom: 12px;
+}
+
+#requests{
+  margin-top: 30px;
+}
+
+.email-acceptance {
+  padding-bottom: 24px;
+}
+
+#request-email {
+  font-weight: 300;
+  float: left;
+  padding-bottom: 30px;
+}
+
+.request-status {
+ float: right;
+ margin-top: -1px;
+}
+
+#accepted{
+  color: $light-green;
+}
+
+#pending{
+  color: $dark-green;
+}
+
+#rejected{
+  color: #FF6075;
+}
+
+#accept-reject {
+  width: 100%;
+  text-align: right;
+}
+
+.card-create {
+  flex-basis: 40%;
+  background-color: white;
+  box-shadow: 0 2px 5px rgb(230,230,230);
+  border-radius: 3px;
+  margin-right: 24px;
+  margin-top: 24px;
+  padding: 24px;
+  padding-bottom: 75px;
+  margin-bottom: 72px;
+}
+
+#create-btn {
+  margin-bottom: 24px;
+  float: right;
+}
+

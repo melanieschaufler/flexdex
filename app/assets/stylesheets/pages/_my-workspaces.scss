@@ -24,6 +24,10 @@ li {
   margin-top: 30px;
 }
 
+.email-acceptance {
+  padding-bottom: 24px;
+}
+
 #request-email {
   font-weight: 300;
   float: left;
@@ -32,7 +36,7 @@ li {
 
 .request-status {
  float: right;
- margin-top: -2px;
+ margin-top: -1px;
 }
 
 #accepted{
@@ -48,7 +52,8 @@ li {
 }
 
 #accept-reject {
-  float: right;
+  width: 100%;
+  text-align: right;
 }
 
 .card-create {
